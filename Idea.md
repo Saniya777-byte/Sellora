@@ -1,4 +1,4 @@
-# TRUSTAAR – Trust-First Local Commerce Platform
+# Sellora– Trust-First Local Commerce Platform
 
 ## 1. Problem Statement
 
@@ -22,7 +22,7 @@ Local sellers and small businesses face:
 
 ## 2. Core Idea
 
-TRUSTAAR is a **trust-first commerce platform** that combines:
+Sellora is a **trust-first commerce platform** that combines:
 
 1. **Verified Local Sellers**
 2. **Certified Return & Second-Life Products**
@@ -35,8 +35,8 @@ The platform focuses on **confidence, not convenience addiction**.
 ## 3. Key Differentiator (Why TRUSTAAR is Different)
 
 Unlike Amazon, Flipkart, Blinkit, or Zepto:
-- TRUSTAAR does NOT optimize for fastest delivery
-- TRUSTAAR optimizes for **lowest regret**
+- Sellora does NOT optimize for fastest delivery
+- Sellora optimizes for **lowest regret**
 
 No infinite scrolling.  
 No fake discounts.  
@@ -54,7 +54,7 @@ No unknown sellers.
 - Pickup or same-day delivery
 - Direct seller chat
 
-Each seller gets a **Trustaar Score** based on:
+Each seller gets a **Sellora Score** based on:
 - Fulfillment accuracy
 - Return disputes
 - Delivery reliability
@@ -64,7 +64,7 @@ Each seller gets a **Trustaar Score** based on:
 
 ### 4.2 Return & Second-Life Products Marketplace (NEW IDEA)
 
-TRUSTAAR officially sells:
+Sellora officially sells:
 - Returned products from **:contentReference[oaicite:0]{index=0}** and **:contentReference[oaicite:1]{index=1}**
 - Refurbished products
 - Verified second-hand items
