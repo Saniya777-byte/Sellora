@@ -100,8 +100,6 @@ Factors:
 - Product condition accuracy
 - Customer issue history
 
-Fake reviews are completely removed.
-
 ---
 
 ## 6. Target Users
