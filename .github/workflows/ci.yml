@@ -8,7 +8,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -28,7 +27,7 @@ jobs:
       - name: Run Backend Tests
         run: |
           cd server
-          npm test || echo "No tests found"
+          npm test || echo "No backend tests"
 
       - name: Install Frontend Dependencies
         run: |
@@ -38,7 +37,7 @@ jobs:
       - name: Run Frontend Tests
         run: |
           cd client
-          npm test || echo "No tests found"
+          npm test || echo "No frontend tests"
 
       - name: Build Frontend
         run: |
