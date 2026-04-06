@@ -1,18 +1,28 @@
+/**
+ * Smoke Test – App renders without crashing
+ */
 import { render, screen } from '@testing-library/react';
+import { describe, it, expect, vi, beforeAll } from 'vitest';
+
+beforeAll(() => {
+  global.fetch = vi.fn(() =>
+    Promise.resolve({
+      ok: true,
+      json: () => Promise.resolve([]),
+    })
+  );
+});
+
 import App from './App';
-import { describe, it, expect, vi } from 'vitest';
 
 describe('App', () => {
-    it('renders ShopSmart title', () => {
-        // Mock fetch
-        global.fetch = vi.fn(() =>
-            Promise.resolve({
-                json: () => Promise.resolve({ status: 'ok', message: 'Test Msg', timestamp: 'now' })
-            })
-        );
+  it('renders without crashing', () => {
+    expect(() => render(<App />)).not.toThrow();
+  });
 
-        render(<App />);
-        const linkElement = screen.getByText(/ShopSmart/i);
-        expect(linkElement).toBeInTheDocument();
-    });
+  it('displays SELLORA brand text', () => {
+    render(<App />);
+    const brandEls = screen.getAllByText(/SELLORA/i);
+    expect(brandEls.length).toBeGreaterThan(0);
+  });
 });
