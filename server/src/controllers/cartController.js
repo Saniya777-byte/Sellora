@@ -1,6 +1,5 @@
 const Cart = require('../models/Cart');
 
-// Get User Cart
 exports.getCart = async (req, res) => {
     const cart = await Cart.findOne({ user: req.user._id })
         .populate('items.product');
@@ -8,7 +7,6 @@ exports.getCart = async (req, res) => {
 
 };
 
-// Add Item to Cart
 exports.addToCart = async (req, res) => {
     const { productId, quantity } = req.body;
     let cart = await Cart.findOne({ user: req.user._id });
@@ -29,7 +27,6 @@ exports.addToCart = async (req, res) => {
 };
 
 
-// Remove Item from Cart
 exports.removeFromCart = async (req, res) => {
     const { productId } = req.body;
     const cart = await Cart.findOne({ user: req.user._id });

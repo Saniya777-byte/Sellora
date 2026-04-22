@@ -1,6 +1,5 @@
 const Order = require("../models/Order");
 
-// Create Order
 exports.createOrder = async (req, res) => {
   try {
 
@@ -29,7 +28,6 @@ exports.createOrder = async (req, res) => {
 };
 
 
-// Get Logged-in User Orders
 exports.getMyOrders = async (req, res) => {
 
   const orders = await Order.find({ user: req.user._id })
@@ -39,7 +37,6 @@ exports.getMyOrders = async (req, res) => {
 };
 
 
-// Admin: Get All Orders
 exports.getAllOrders = async (req, res) => {
 
   const orders = await Order.find()
@@ -50,7 +47,6 @@ exports.getAllOrders = async (req, res) => {
 };
 
 
-// Admin: Update Order Status
 exports.updateOrderStatus = async (req, res) => {
 
   const order = await Order.findById(req.params.id);
