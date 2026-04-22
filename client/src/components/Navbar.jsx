@@ -1,6 +1,3 @@
-/**
- * Navbar – Sticky header with logo, nav links, icons
- */
 import { useState, useEffect } from 'react';
 import { ShoppingBag, User, Search, Menu, X, Diamond } from 'lucide-react';
 import { useCart } from '../context/CartContext';
@@ -52,7 +49,13 @@ function Navbar({ currentPage, onNavigate }) {
         </button>
 
         {/* Logo */}
-        <button id="nav-logo" className="navbar__logo" onClick={() => nav('home')} aria-label="Sellora home">
+        <button
+          id="nav-logo"
+          data-testid="logo"
+          className="navbar__logo"
+          onClick={() => nav('home')}
+          aria-label="Sellora home"
+        >
           <Diamond size={16} className="navbar__logo-icon" />
           <span className="navbar__logo-text">SELLORA</span>
         </button>
@@ -66,6 +69,7 @@ function Navbar({ currentPage, onNavigate }) {
             <li key={link.page}>
               <button
                 id={`nav-${link.page}`}
+                data-testid={`nav-${link.page}`}
                 className={`navbar__link ${currentPage === link.page ? 'navbar__link--active' : ''}`}
                 onClick={() => nav(link.page)}
               >
@@ -101,6 +105,7 @@ function Navbar({ currentPage, onNavigate }) {
           ) : (
             <button
               id="nav-login"
+              data-testid="login-button"
               className="navbar__icon-btn"
               onClick={() => nav('login')}
               aria-label="Sign in"
@@ -112,6 +117,7 @@ function Navbar({ currentPage, onNavigate }) {
           {/* Cart */}
           <button
             id="nav-cart"
+            data-testid="cart-button"
             className="navbar__icon-btn navbar__cart-btn"
             onClick={() => nav('cart')}
             aria-label={`Cart (${totalItems} items)`}

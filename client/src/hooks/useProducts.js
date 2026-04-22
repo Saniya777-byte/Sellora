@@ -1,6 +1,3 @@
-/**
- * useProducts – Fetch jewelry from FakeStore API with loading/error state
- */
 import { useState, useEffect, useCallback } from 'react';
 import { fetchJewelry } from '../services/api';
 

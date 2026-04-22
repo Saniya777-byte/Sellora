@@ -1,14 +1,7 @@
-/**
- * Integration Test – API fetch + render
- *
- * Tests that the fetchJewelry service correctly fetches data and
- * that the ProductsPage renders products from it.
- */
 import { render, screen, waitFor } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { fetchJewelry, fetchProductById, loginUser } from '../services/api';
 
-// ─── fetchJewelry ─────────────────────────────────────────────────────────────
 
 const MOCK_FAKESTORE_PRODUCTS = [
   { id: 1, title: 'FakeStore Item 1', price: 9.99,  category: "women's clothing", image: 'https://example.com/img1.jpg', rating: { rate: 4.1, count: 120 }, description: 'Desc 1' },
@@ -32,10 +25,8 @@ describe('fetchJewelry – Integration', () => {
 
     const products = await fetchJewelry();
 
-    // Should have at least 84 mock + 2 fakestore = 86 (we expect 100+)
     expect(products.length).toBeGreaterThanOrEqual(84);
 
-    // The FakeStore items should be present
     const fakestoreItem = products.find((p) => p.title === 'FakeStore Item 1');
     expect(fakestoreItem).toBeDefined();
   });
@@ -70,7 +61,6 @@ describe('fetchJewelry – Integration', () => {
   });
 });
 
-// ─── fetchProductById ─────────────────────────────────────────────────────────
 
 describe('fetchProductById – Integration', () => {
   beforeEach(() => {
@@ -106,7 +96,6 @@ describe('fetchProductById – Integration', () => {
   });
 });
 
-// ─── loginUser ────────────────────────────────────────────────────────────────
 
 describe('loginUser – Integration', () => {
   beforeEach(() => {
@@ -151,7 +140,6 @@ describe('loginUser – Integration', () => {
   });
 });
 
-// ─── Integration: ProductsPage renders products ───────────────────────────────
 
 import ProductsPage from '../pages/ProductsPage';
 import { CartProvider } from '../context/CartContext';
@@ -181,7 +169,6 @@ describe('ProductsPage – Render from API', () => {
         <ProductsPage onNavigate={vi.fn()} />
       </Wrapper>,
     );
-    // Skeleton elements have aria-busy=true
     const skeletons = document.querySelectorAll('[aria-busy="true"]');
     expect(skeletons.length).toBeGreaterThan(0);
   });
@@ -194,10 +181,8 @@ describe('ProductsPage – Render from API', () => {
     );
 
     await waitFor(() => {
-      // Should find at least one mock jewel like Classic Solitaire
       expect(screen.getByText(/Classic Solitaire/i)).toBeInTheDocument();
     });
-    // And our FakeStore item
     expect(screen.getByText('FakeStore Ring')).toBeInTheDocument();
   });
 

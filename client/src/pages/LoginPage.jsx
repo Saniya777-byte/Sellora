@@ -1,6 +1,3 @@
-/**
- * LoginPage – Elegant sign-in form
- */
 import { useState } from 'react';
 import { Eye, EyeOff, Diamond, AlertCircle } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
@@ -50,7 +47,7 @@ function LoginPage({ onNavigate }) {
           </div>
 
           {error && (
-            <div className="login-error" role="alert">
+            <div className="login-error" role="alert" data-testid="login-error">
               <AlertCircle size={16} />
               <span>{error}</span>
             </div>
@@ -61,6 +58,7 @@ function LoginPage({ onNavigate }) {
               <label className="form-label" htmlFor="username-input">Username</label>
               <input
                 id="username-input"
+                data-testid="username-input"
                 name="username"
                 type="text"
                 className="form-input"
@@ -82,6 +80,7 @@ function LoginPage({ onNavigate }) {
               <div className="login-pwd-wrap">
                 <input
                   id="password-input"
+                  data-testid="password-input"
                   name="password"
                   type={showPwd ? 'text' : 'password'}
                   className="form-input login-pwd-input"
@@ -104,6 +103,7 @@ function LoginPage({ onNavigate }) {
 
             <button
               id="login-submit-btn"
+              data-testid="login-submit-btn"
               type="submit"
               className="btn btn-gold btn-lg login-submit"
               disabled={loading || !form.username || !form.password}

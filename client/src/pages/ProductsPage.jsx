@@ -1,6 +1,3 @@
-/**
- * ProductsPage – Grid with search, sort, category filters and pagination
- */
 import { useState, useMemo } from 'react';
 import { useProducts } from '../hooks/useProducts';
 import ProductCard, { ProductCardSkeleton } from '../components/ProductCard';
@@ -45,12 +42,10 @@ function ProductsPage({ onNavigate, initialSearch = '' }) {
   const filtered = useMemo(() => {
     let list = products;
 
-    // Category filter
     if (category !== 'All') {
       list = list.filter((p) => p.category === category);
     }
 
-    // Search filter
     if (search.trim()) {
       const q = search.toLowerCase();
       list = list.filter(
@@ -105,6 +100,7 @@ function ProductsPage({ onNavigate, initialSearch = '' }) {
             <Search size={15} className="products-search__icon" />
             <input
               id="product-search"
+              data-testid="product-search-input"
               type="search"
               className="products-search__input"
               placeholder="Search jewelry..."
@@ -148,6 +144,7 @@ function ProductsPage({ onNavigate, initialSearch = '' }) {
                 key={cat}
                 role="tab"
                 id={`cat-tab-${cat.replace(/\s+/g, '-').toLowerCase()}`}
+                data-testid={`category-tab-${cat.replace(/\s+/g, '-').toLowerCase()}`}
                 aria-selected={category === cat}
                 className={`tag ${category === cat ? 'active' : ''}`}
                 onClick={() => handleCategory(cat)}

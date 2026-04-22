@@ -1,6 +1,3 @@
-/**
- * HomePage – Hero + Featured Jewelry
- */
 import { Shield, Truck, RotateCcw, Package, ArrowRight, RefreshCw } from 'lucide-react';
 import { useProducts } from '../hooks/useProducts';
 import ProductCard, { ProductCardSkeleton } from '../components/ProductCard';

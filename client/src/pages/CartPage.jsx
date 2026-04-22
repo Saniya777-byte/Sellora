@@ -1,6 +1,3 @@
-/**
- * CartPage – Cart items with quantity controls, total, and checkout
- */
 import { Trash2, ShoppingBag, ArrowRight, Plus, Minus, Lock } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import './CartPage.css';
@@ -48,6 +45,7 @@ function CartItem({ item, onIncrement, onDecrement, onRemove }) {
       {/* Remove */}
       <button
         id={`remove-${id}`}
+        data-testid={`remove-${id}`}
         className="cart-item__remove"
         onClick={() => onRemove(id)}
         aria-label={`Remove ${title}`}
@@ -64,7 +62,6 @@ function CartPage({ onNavigate }) {
   const shipping   = totalPrice >= 50 ? 0 : 9.99;
   const orderTotal = totalPrice + shipping;
 
-  // Empty
   if (items.length === 0) {
     return (
       <main className="cart-page page" id="main-content">

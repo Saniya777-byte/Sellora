@@ -1,6 +1,3 @@
-/**
- * AuthContext – stores login state in memory + localStorage
- */
 import { createContext, useContext, useState, useCallback, useEffect } from 'react';
 import { loginUser, logoutUser, getStoredUser, getToken } from '../services/api';
 
@@ -11,7 +8,6 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(false);
   const [error,   setError]   = useState(null);
 
-  // Restore session
   useEffect(() => {
     if (getToken()) setUser(getStoredUser());
   }, []);
@@ -43,7 +39,6 @@ export function AuthProvider({ children }) {
   );
 }
 
-// eslint-disable-next-line react-refresh/only-export-components
 export function useAuth() {
   const ctx = useContext(AuthContext);
   if (!ctx) throw new Error('useAuth must be used within AuthProvider');

@@ -1,6 +1,3 @@
-/**
- * ProductDetailPage – Full product view with large image, details, add to cart
- */
 import { useState, useEffect } from 'react';
 import { ShoppingBag, ArrowLeft, Star, Shield, Truck, RefreshCw } from 'lucide-react';
 import { fetchProductById } from '../services/api';

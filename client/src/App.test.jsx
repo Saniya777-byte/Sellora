@@ -1,6 +1,3 @@
-/**
- * Smoke Test – App renders without crashing
- */
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi, beforeAll } from 'vitest';
 

@@ -1,12 +1,7 @@
-/**
- * Unit Tests – ProductCard Component (enhanced)
- * Covers: rendering, interactions, skeleton, star rating, cart flow
- */
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import ProductCard, { ProductCardSkeleton } from '../components/ProductCard';
 
-// ── CartContext mock ──────────────────────────────────────────────────────────
 const mockAddItem = vi.fn();
 vi.mock('../context/CartContext', () => ({
   useCart: () => ({ addItem: mockAddItem }),
@@ -22,7 +17,6 @@ const MOCK_PRODUCT = {
   rating: { rate: 3.9, count: 70 },
 };
 
-// ── ProductCardSkeleton ───────────────────────────────────────────────────────
 describe('ProductCardSkeleton', () => {
   it('renders with aria-busy=true', () => {
     const { container } = render(<ProductCardSkeleton />);
@@ -42,7 +36,6 @@ describe('ProductCardSkeleton', () => {
   });
 });
 
-// ── ProductCard render ────────────────────────────────────────────────────────
 describe('ProductCard – Rendering', () => {
   it('renders product title', () => {
     render(<ProductCard product={MOCK_PRODUCT} />);
@@ -100,7 +93,6 @@ describe('ProductCard – Rendering', () => {
   });
 });
 
-// ── Interactions ──────────────────────────────────────────────────────────────
 describe('ProductCard – Interactions', () => {
   beforeEach(() => {
     mockAddItem.mockClear();
@@ -144,11 +136,9 @@ describe('ProductCard – Interactions', () => {
   });
 });
 
-// ── Star Rating ───────────────────────────────────────────────────────────────
 describe('ProductCard – Star Rating', () => {
   it('renders 5 star elements', () => {
     const { container } = render(<ProductCard product={MOCK_PRODUCT} />);
-    // Stars are SVG elements rendered by lucide Star icon
     const stars = container.querySelectorAll('.product-card__stars svg');
     expect(stars).toHaveLength(5);
   });
@@ -160,7 +150,6 @@ describe('ProductCard – Star Rating', () => {
   });
 });
 
-// ── Edge cases ────────────────────────────────────────────────────────────────
 describe('ProductCard – Edge Cases', () => {
   it('renders without rating gracefully', () => {
     const noRating = { ...MOCK_PRODUCT, rating: undefined };

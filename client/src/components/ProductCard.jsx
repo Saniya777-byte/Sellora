@@ -1,11 +1,7 @@
-/**
- * ProductCard – Reusable jewelry product card
- */
 import { ShoppingBag, Star } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import './ProductCard.css';
 
-/** Skeleton variant */
 export function ProductCardSkeleton() {
   return (
     <div className="product-card product-card--skeleton" aria-busy="true" aria-label="Loading product">
@@ -69,6 +65,7 @@ function ProductCard({ product, onNavigate }) {
         <div className="product-card__overlay">
           <button
             id={`quick-add-${id}`}
+            data-testid={`quick-add-${id}`}
             className="btn btn-gold btn-sm product-card__quick-add"
             onClick={handleAdd}
             aria-label={`Add ${title} to cart`}
@@ -88,6 +85,7 @@ function ProductCard({ product, onNavigate }) {
           <span className="product-card__price">${price.toFixed(2)}</span>
           <button
             id={`add-${id}`}
+            data-testid={`add-to-cart-${id}`}
             className="product-card__add-icon"
             onClick={handleAdd}
             aria-label={`Add ${title} to cart`}

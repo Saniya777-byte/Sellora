@@ -1,6 +1,3 @@
-/**
- * App – Root with simple state-based router
- */
 import { useState, useCallback } from 'react';
 import './index.css';
 
