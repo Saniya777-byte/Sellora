@@ -10,7 +10,6 @@ permissions:
   contents: read
 
 jobs:
-  # ── Frontend ────────────────────────────────────────────────────────────────
   frontend:
     name: Frontend – Lint, Test, Build
     runs-on: ubuntu-latest
@@ -36,9 +35,18 @@ jobs:
         run: npm run lint
 
       - name: Run unit + integration tests (Vitest)
-        run: npm test
+        run: npm test -- --coverage
         env:
           NODE_ENV: test
+
+      - name: Upload coverage reports
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./client/coverage/lcov.info
+          flags: frontend
+          name: frontend-coverage
+          fail_ci_if_error: false
 
       - name: Build production bundle (Vite)
         run: npm run build
@@ -53,7 +61,6 @@ jobs:
           path: client/dist/
           retention-days: 14
 
-  # ── Notify ──────────────────────────────────────────────────────────────────
   notify:
     name: CI Status
     needs: [frontend]
@@ -71,7 +78,6 @@ jobs:
             exit 1
           fi
 
-  # ── Deploy to EC2 (main branch only) ────────────────────────────────────────
   deploy:
     name: Deploy to EC2
     needs: [frontend]
@@ -101,7 +107,6 @@ jobs:
             echo "Starting Sellora deployment..."
             cd /var/www/sellora
 
-            # Backup current dist (idempotent)
             if [ -d dist ]; then
               rm -rf dist.bak
               mv dist dist.bak
